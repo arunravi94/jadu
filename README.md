@@ -21,7 +21,7 @@
   <a href="#installation">`Installation`</a> •
   <a href="#usage">`Usage`</a> •
   <a href="#patterns">`Patterns`</a> •
-  <a href="#troubleshooting">`Troubleshooting`</a> •
+  
   <a href="#sample-output">`Sample Output`</a>
 
 </div> 
@@ -200,21 +200,12 @@ Jadu scans for two types of secrets:
 ```
 </details>
 
-Run `jadu -show-patterns` for the full list.
+
 
 <br>
 <br>
 
-## Troubleshooting
 
-- **No Output?**
-  - Ensure URLs start with `http://` or `https://`.
-  - Verify internet connectivity.
-  - Increase `-t` for larger inputs.
-
-- **Unexpected Results?**
-  - Check regex syntax with `-ep`.
-  - Use `-d` for detailed debugging.
 
 <br>
 <br>
@@ -361,7 +352,59 @@ Output (if check fails):
 - Version status feedback.
 </details>
 
----
+
+
+
+
+
+<details>
+<summary>Add custom pattern</summary>
+
+
+
+
+#### Custom Patterns
+To permanently add secret or sensitive patterns, modify the secretsPatterns or sensitivePatterns arrays in the source code (main.go) and rebuild the tool.
+
+Steps:
+1. Edit the Source Code:
+   - Open main.go in a text editor.
+   - Locate the secretsPatterns (for regular secrets) or sensitivePatterns (for sensitive secrets) array.
+   - Add your pattern using the SecretPattern struct: {Pattern: regexp.MustCompile("<regex-pattern>"), Label: "<label>"}.
+
+2. Syntax for Adding a Pattern:
+      {Pattern: regexp.MustCompile("<regex-pattern>"), Label: "<label>"},
+   
+   - <regex-pattern>: A valid Go regex string (e.g., mysecret-[a-zA-Z0-9]{8}).
+   - <label>: A descriptive name (e.g., "My Secret Key").
+
+3. Examples:
+   - Add to Regular Secrets:
+   - ```
+          var secretsPatterns = []SecretPattern{
+         // Existing patterns...
+         {Pattern: regexp.MustCompile(`mysecret-[a-zA-Z0-9]{8}`), Label: "My Secret Key"},
+     }
+     ```
+     
+     - Output will appear in green.
+
+   - Add to Sensitive Secrets:
+   - ```
+          var sensitivePatterns = []SecretPattern{
+         // Existing patterns...
+         {Pattern: regexp.MustCompile(`mysensitive-[0-9]{12}`), Label: "My Sensitive Token"},
+     }
+
+     ```
+     - Output will appear in red.
+
+4. Rebuild the Tool:
+5. ```
+      go build -o jadu main.go
+   
+
+</details>
 
 ```
 
