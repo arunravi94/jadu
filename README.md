@@ -1,152 +1,202 @@
-
 <div align="center">
-  <img src="https://i.imgur.com/JQ7X8Kp.png" width="300" alt="Jadu Logo">
-  <h1>Jadu: Enterprise-Grade Secret Scanning</h1>
-  <p>
-    <a href="https://github.com/Karthik-HR0/jadu/actions">
-      <img src="https://img.shields.io/github/actions/workflow/status/Karthik-HR0/jadu/build.yml?style=flat&logo=github" alt="Build Status">
-    </a>
-    <a href="https://goreportcard.com/report/github.com/Karthik-HR0/jadu">
-      <img src="https://goreportcard.com/badge/github.com/Karthik-HR0/jadu?style=flat&logo=go" alt="Go Report">
-    </a>
-    <a href="https://github.com/Karthik-HR0/jadu/releases">
-      <img src="https://img.shields.io/github/v/release/Karthik-HR0/jadu?style=flat&logo=github" alt="Release">
-    </a>
-    <a href="https://opensource.org/licenses/MIT">
-      <img src="https://img.shields.io/badge/license-MIT-blue?style=flat&logo=opensourceinitiative" alt="License">
-    </a>
-  </p>
+
+<h3>
+  <b>
+
+  <kbd>[**✖️**](https://github.com/Karthik-HR0/X)</kbd>
+
+<kbd> Beta -0.1 V </kbd>
+  </b>
+</h3>
+
+<h6>AUTOMATED XSS TARGET FINDER + XSS VULN SCANNER </h6>
+
+
+
 </div>
 
-## Overview
+<br>
+<br>
+<br>
 
-Jadu is a production-ready secret scanning solution designed for security teams and enterprise environments. Built with Go for performance and reliability, it identifies exposed credentials across your web assets with surgical precision.
+> [!NOTE]  
+> **_THIS IS IN BETA ( -0.1 V )._**
 
-```mermaid
-graph TD
-    A[Input URLs] --> B[Concurrent Scanning]
-    B --> C{Pattern Matching}
-    C -->|Positive| D[Risk Assessment]
-    C -->|Negative| E[Discard]
-    D --> F[Prioritized Output]
-```
-
-## Key Features
-
-### 🛡️ Security Engine
-- **Precision Detection**: 15+ built-in patterns covering AWS, GitHub, Google Cloud, and more
-- **Custom Rules**: Extend with organization-specific regex patterns
-- **Risk Scoring**: Automatic severity classification (Critical/High/Medium/Low)
-
-### ⚙️ Technical Specs
-| Component          | Specification                          |
-|--------------------|----------------------------------------|
-| Architecture       | Concurrent pipeline with worker pools  |
-| Performance        | 500+ requests/second (varies by hardware) |
-| Memory Efficiency  | <2MB RAM per 100 concurrent scans      |
-| Output Formats     | Terminal, JSON (pipe to SIEMs)         |
-
-## Getting Started
-
-### Installation
-```bash
-# Homebrew (macOS/Linux)
-brew tap Karthik-HR0/tools
-brew install jadu
-
-# Docker
-docker pull ghcr.io/karthik-hr0/jadu:latest
-
-# Binary (Linux/Windows/Mac)
-curl -sSL https://install.jadu.dev | bash
-```
-
-## Usage Examples
-
-### Basic Scanning
-```bash
-# Single URL
-jadu scan --url https://example.com/assets/main.js
-
-# Bulk scan with JSON output
-cat urls.txt | jadu scan --threads 100 --format json > results.json
-```
-
-### Enterprise Integration
-```bash
-# CI/CD Pipeline Integration
-jadu scan --dir ./dist --exclude *.min.js | tee scan_results.log
-
-# Kubernetes CronJob
-kubectl create job scan-$(date +%s) --image=jadu \
-  -- --urls-file s3://bucket/scan-targets.txt --slack-webhook $WEBHOOK
-```
-
-## Detection Patterns
-
-```typescript
-interface DetectionPattern {
-  category: 'cloud' | 'auth' | 'database';
-  confidence: 0.9 | 0.7 | 0.5;
-  examples: string[];
-}
-
-const patterns: DetectionPattern[] = [
-  {
-    category: 'cloud',
-    confidence: 0.9,
-    examples: ['AKIA[0-9A-Z]{16}', 'AIza[0-9A-Za-z-_]{35}']
-  },
-  // ...15+ additional patterns
-];
-```
-
-## Enterprise Features
-
-<details>
-<summary><strong>🔐 Role-Based Access Control</strong></summary>
-
-```yaml
-# jadu-config.yaml
-access_control:
-  roles:
-    auditor:
-      permissions: [read, scan]
-    admin:
-      permissions: [read, write, delete]
-  teams:
-    security: [*.prod.example.com]
-    devops: [*.staging.*]
-```
-</details>
-
-<details>
-<summary><strong>📊 Dashboard Integration</strong></summary>
-
-![Grafana Dashboard](https://i.imgur.com/8Y9vKz0.png)
-```bash
-# Stream to Prometheus
-jadu scan --prometheus :9091
-```
-</details>
-
-## Compliance & Security
-
-✅ SOC2 Type II Certified Scanning Engine  
-✅ GDPR-compliant data processing  
-✅ Zero data retention by default  
-
-```text
-Security Whitepaper Available Upon Request
-contact@jadu.security
-```
+<br>
+<br>
+<br>
 
 ---
 
+<h3>ufxss</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-d DOMAIN</code></td>
+      <td>Target domain to scan (e.g., example.com)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>-o OUTPUT</code></td>
+      <td>Save results to the specified output file</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>-sp SPECIFIC_PATTERN</code></td>
+      <td>Scan using a specific pattern (e.g., q=)</td>
+      <td> xss pattern</td>
+    </tr>
+    <tr>
+      <td><code>--filter</code></td>
+      <td>Filter URLs using s0md3v's uro tool</td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
 <div align="center">
-  <sub>Built with</sub> ❤️ <sub>and</sub> 
-  <img src="https://img.icons8.com/color/20/000000/golang.png" alt="Go"> <sub>by</sub> 
-  <a href="https://github.com/Karthik-HR0">Karthik-HR0</a> •
-  <a href="https://jadu.security/docs">Docs</a> •
-  <a href="https://jadu.security/support">Support</a>
+
+| Category              | Core Capabilities                                  | Advanced Functionality                              | Intelligent Automation                               |
+|-----------------------|----------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+| **Historical URL Fetching** | • _`Wayback Machine Integration`_ <br>• _`AlienVault API Support`_ | • _`Duplicate URL Filtering`_ <br>• _`Domain-wide Coverage`_ | • _`Error Handling for Network Issues`_ <br>• _`Efficient URL Parsing`_ |
+| **Pattern Matching**   | • _`Predefined Patterns for XSS Detection`_ <br>• _`Custom Pattern Support`_ | • _`Advanced Query Analysis`_ <br>• _`Heuristic-based Matching`_ | • _`Automatic Parameter Detection`_ <br>• _`Multi-pattern Matching`_ |
+| **Ease of Use**        | • _`Command-Line Interface (CLI)`_ <br>• _`Single-command Execution`_ | • _`Optional Output File Generation`_ <br>• _`Custom Pattern Filtering`_ | • _`Simplified Workflow`_ <br>• _`Dynamic URL Filtering with uro`_ |
+| **Extensibility**      | • _`Modular Design for URL Fetching`_ <br>• _`Python Package Integration`_ | • _`Easily Extendable for New Patterns`_ <br>• _`Centralized Pattern Module`_ | • _`Continuous Tool Updates`_ <br>• _`Custom Integration with APIs`_ |
+
 </div>
+
+
+
+
+
+<h6 align="center">
+  USAGE 
+</h6>
+
+<kbd> # Scan a domain and display results </kbd>
+```bash
+python3 ufxss.py -d example.com
+``` 
+<kbd> # Scan a domain and save results to a file </kbd>
+```bash
+python3 ufxss.py -d example.com -o results.txt
+``` 
+<kbd> # Scan with a specific pattern (e.g., 'q=') </kbd>
+```bash
+python3 ufxss.py -d example.com -sp q=
+``` 
+<kbd> # Scan with filtering enabled </kbd>
+```bash
+python3 ufxss.py -d example.com --filter
+```
+
+<kbd> # help </kbd>
+ 
+```bash
+python3 ufxss.py -h
+
+usage: ufxss.py [-h] -d DOMAIN [-o OUTPUT] [-sp SPECIFIC_PATTERN] [--filter]
+
+UFX - URL FOR XSS
+
+options:
+  -h, --help            show this help message and exit
+  -d DOMAIN, --domain DOMAIN
+                        Target domain to scan (e.g., example.com)
+  -o OUTPUT, --output OUTPUT
+                        Save results to the specified output file
+  -sp SPECIFIC_PATTERN, --specific-pattern SPECIFIC_PATTERN
+                        Scan using a specific pattern (e.g., q=)
+  --filter              Filter URLs using s0md3v's uro tool
+
+Example: python3 ufx.py -d example.com -o results.txt
+
+```
+---
+
+<h3>XSS SCANNER</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>-url</code></td>
+      <td>Specify a single URL to scan</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>-file</code></td>
+      <td>Specify a file containing URLs</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>-payload</code></td>
+      <td>Specify a payload file</td>
+      <td>Required</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div align="center">
+
+| Category              | Core Capabilities                                  | Advanced Functionality                              | Intelligent Automation                               |
+|-----------------------|----------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+| **Payload Management** | • _`Custom Payload Support`_ <br>• _`Payload File Integration`_ | • _`Dynamic Payload URL Generation`_ <br>• _`Multiple Payload Handling`_ | • _`Automatic Payload Injection`_ <br>• _`Alert-based XSS Detection`_ |
+| **Browser Automation** | • _`Selenium-based Testing`_ <br>• _`ChromeDriver Integration`_ | • _`Headless Scanning Mode`_ <br>• _`Automatic Alert Handling`_ | • _`Real-time Alert Capture`_ <br>• _`Advanced Timeout Management`_ |
+| **Ease of Use**        | • _`Command-Line Interface (CLI)`_ <br>• _`Simple URL and File Input`_ | • _`Concurrency Support for Faster Scans`_ <br>• _`Streamlined Workflow`_ | • _`Custom Timeout Settings`_ <br>• _`Comprehensive Scan Summaries`_ |
+| **Extensibility**      | • _`Python-based Modular Design`_ <br>• _`Integration with Other Tools`_ | • _`Expandable for New Vulnerabilities`_ <br>• _`Centralized Payload Management`_ | • _`Continuous Updates for New Techniques`_ <br>• _`Customizable Scanning Options`_ |
+
+</div>
+
+
+---
+
+
+<div align="center">
+<kbd> USAGE:↓ </kbd>
+</div>
+
+<kbd> # Scan a single URL with a payload file </kbd>
+```bash
+python3 xss.py -url https://example.com?search= -payload payloads.txt
+```
+<kbd> # Scan multiple URLs from a file </kbd>
+```bash
+python3 xss.py -file urls.txt -payload payloads.txt
+```
+
+<kbd> # Use piped input for URLs and scan with a payload file </kbd>
+```bash
+cat urls.txt | python3 xss.py -payload payloads.txt
+```
+
+<kbd> # help </kbd>
+
+```bash
+
+python3 xss.py -h                                                                                                
+usage: xss.py [-h] [-url URL] [-file FILE] -payload PAYLOAD
+
+XSS Scanner Tool
+
+options:
+  -h, --help        show this help message and exit
+  -url URL          Specify a single URL to scan
+  -file FILE        Specify a file containing URLs
+  -payload PAYLOAD  Specify a payload file
+```
