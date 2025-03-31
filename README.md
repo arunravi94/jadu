@@ -9,7 +9,7 @@
     
   <kbd><a href="https://github.com/Karthik-HR0/jadu">JADU</a></kbd>
     
-  <kbd>the full version release soon !!! </kbd>
+  <kbd>the full version release soon with new feature!!! </kbd>
   </b>
 </h3>
 
