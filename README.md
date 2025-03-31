@@ -3,7 +3,11 @@
 
 <h3>
   <b>
-  🛸 <kbd><a href="https://github.com/Karthik-HR0/jadu">JADU</a></kbd>
+    
+![IMG_20250331_114354](https://github.com/user-attachments/assets/8a186c35-455f-4bdc-89d9-b1c557d3ebb6)
+
+    
+  <kbd><a href="https://github.com/Karthik-HR0/jadu">JADU</a></kbd>
     
   <kbd>the full version release soon !!! </kbd>
   </b>
